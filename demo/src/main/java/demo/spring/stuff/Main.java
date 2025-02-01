@@ -9,9 +9,7 @@ public class Main {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(MaConfiguration.class);
         IntStream i1 = IntStream.of(1, 2, 3);
         IntStream i2 = IntStream.of(1, 2, 3);
-        Calculator c = context.getBean(Calculator.class);
-        Aggregator a = context.getBean(Aggregator.class);
-        ComplexProcedure p = new ComplexProcedure(c, a);
+        ComplexProcedure p = context.getBean(ComplexProcedure.class);
         double d = p.work(i1, i2);
         System.out.println(d);
     }
