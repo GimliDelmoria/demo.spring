@@ -1,5 +1,8 @@
 package demo.spring.stuff;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Aggregator implements IAggregator {
 
     @Override

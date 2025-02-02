@@ -1,11 +1,14 @@
 package demo.spring.stuff;
 
+import org.springframework.stereotype.Component;
+
 import java.util.stream.IntStream;
 
+@Component
 public class ComplexProcedure implements IComplexProcedure {
 
-    private final ICalculator calculator;
-    private final IAggregator aggregator;
+    private ICalculator calculator = null;
+    private IAggregator aggregator = null;
 
     public ComplexProcedure(ICalculator calculator, IAggregator aggregator) {
         this.calculator = calculator;
