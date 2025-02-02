@@ -1,7 +1,6 @@
 package demo.spring.stuff;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.stream.IntStream;
@@ -9,20 +8,15 @@ import java.util.stream.IntStream;
 @Component
 public class ComplexProcedure implements IComplexProcedure {
 
-    private ICalculator calculator = null;
+    @Autowired
+    private ICalculator supremeCalculator = null; // serait ko si le nom du champ ne matchait pas un bean
+    @Autowired
     private IAggregator aggregator = null;
     private Limiter limiter = null;
 
-    // problème à la création car deux beans candidats
-    // on n'avait pas d'erreur avec autowired niveau fields
-    public ComplexProcedure(@Qualifier("coolCalculator") ICalculator calculator, IAggregator aggregator) {
-        this.calculator = calculator;
-        this.aggregator = aggregator;
-    }
-
     @Override
     public double work(IntStream i1, IntStream i2) {
-        double d = aggregator.aggregate(calculator.compute(i1), calculator.compute(i2));
+        double d = aggregator.aggregate(supremeCalculator.compute(i1), supremeCalculator.compute(i2));
         return limiter != null ? limiter.limit(d) : d;
     }
 

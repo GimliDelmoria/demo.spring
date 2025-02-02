@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.stream.IntStream;
 
-@Component("coolCalculator")
+@Component
 public class SupremeCalculator implements ICalculator {
 
     @Override
