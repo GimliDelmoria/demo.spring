@@ -24,7 +24,7 @@ public class ComplexProcedure implements IComplexProcedure {
 
     // injection par méthode
     // appelée automatiquement à la construction du bean
-    @Autowired
+    @Autowired(required = false) // true est la valeur par défaut
     public void setLimiter(Limiter limiter) {
         this.limiter = limiter;
     }
