@@ -8,7 +8,7 @@ public class MaConfiguration {
 
     @Bean
     public ICalculator calculator() {
-        return new Calculator();
+        return new SupremeCalculator();
     }
 
     @Bean
