@@ -8,21 +8,13 @@ import java.util.stream.IntStream;
 @Component
 public class ComplexProcedure implements IComplexProcedure {
 
+    // Fonctionne y compris sur les private members
+    @Autowired
     private ICalculator calculator = null;
+    @Autowired
     private IAggregator aggregator = null;
+    @Autowired
     private Limiter limiter = null;
-
-    @Autowired // pas nécessaire si un seul constructeur (non défaut)
-    public ComplexProcedure(ICalculator calculator, IAggregator aggregator) {
-        this.calculator = calculator;
-        this.aggregator = aggregator;
-    }
-
-    public ComplexProcedure(ICalculator calculator, IAggregator aggregator, Limiter limiter) {
-        this.calculator = calculator;
-        this.limiter = limiter;
-        this.aggregator = aggregator;
-    }
 
     @Override
     public double work(IntStream i1, IntStream i2) {
