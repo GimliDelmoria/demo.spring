@@ -1,11 +1,13 @@
 package demo.spring.stuff;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import java.util.stream.IntStream;
 
 @Component
+@Lazy
 public class ComplexProcedure implements IComplexProcedure {
 
     @Autowired

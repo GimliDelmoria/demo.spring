@@ -8,9 +8,10 @@ import java.util.stream.IntStream;
 public class Main {
     public static void main(String[] args) {
         ApplicationContext context = new AnnotationConfigApplicationContext(MyConfiguration.class);
+        // ComplexProcedure est lazy est n'existe pas encore
         IntStream i1 = IntStream.of(1, 2, 3);
         IntStream i2 = IntStream.of(1, 2, 3);
-        IComplexProcedure p = context.getBean(IComplexProcedure.class);
+        IComplexProcedure p = context.getBean(IComplexProcedure.class); // créé ici
         double d = p.work(i1, i2);
         System.out.println(d);
     }
