@@ -11,10 +11,10 @@ public class MaConfiguration {
         return new SupremeCalculator();
     }
 
-    @Bean
-    public ICalculator supremeCalculator() {
-        return new SupremeCalculator();
-    }
+//    @Bean
+//    public ICalculator supremeCalculator() {
+//        return new SupremeCalculator();
+//    }
 
     @Bean
     public IAggregator aggregator() {
