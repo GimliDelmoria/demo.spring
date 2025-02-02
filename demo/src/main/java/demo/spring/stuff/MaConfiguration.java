@@ -7,17 +7,17 @@ import org.springframework.context.annotation.Configuration;
 public class MaConfiguration {
 
     @Bean
-    public Calculator calculator() {
+    public ICalculator calculator() {
         return new Calculator();
     }
 
     @Bean
-    public Aggregator aggregator() {
+    public IAggregator aggregator() {
         return new Aggregator();
     }
 
     @Bean
-    public ComplexProcedure complexProcedure() {
+    public IComplexProcedure complexProcedure() {
         return new ComplexProcedure(calculator(), aggregator()); // ne crée pas de nouveaux objets, aggregator et calculator sont bien des singletons.
     }
 
