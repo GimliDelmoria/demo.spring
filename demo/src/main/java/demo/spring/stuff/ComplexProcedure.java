@@ -15,7 +15,7 @@ public class ComplexProcedure implements IComplexProcedure {
 
     // problème à la création car deux beans candidats
     // on n'avait pas d'erreur avec autowired niveau fields
-    public ComplexProcedure(@Qualifier("supremeCalculator") ICalculator calculator, IAggregator aggregator) {
+    public ComplexProcedure(@Qualifier("coolCalculator") ICalculator calculator, IAggregator aggregator) {
         this.calculator = calculator;
         this.aggregator = aggregator;
     }
