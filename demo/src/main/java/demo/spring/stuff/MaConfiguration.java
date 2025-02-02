@@ -7,7 +7,12 @@ import org.springframework.context.annotation.Configuration;
 public class MaConfiguration {
 
     @Bean
-    public ICalculator calculator() {
+    public ICalculator classicCalculator() {
+        return new SupremeCalculator();
+    }
+
+    @Bean
+    public ICalculator supremeCalculator() {
         return new SupremeCalculator();
     }
 
