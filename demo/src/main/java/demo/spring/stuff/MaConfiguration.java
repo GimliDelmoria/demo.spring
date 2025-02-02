@@ -17,8 +17,8 @@ public class MaConfiguration {
     }
 
     @Bean
-    public IComplexProcedure complexProcedure() {
-        return new ComplexProcedure(calculator(), aggregator()); // ne crée pas de nouveaux objets, aggregator et calculator sont bien des singletons.
+    public IComplexProcedure complexProcedure(ICalculator calculator, IAggregator aggregator) {
+        return new ComplexProcedure(calculator, aggregator); // Le DI conteneur gère tout seul.
     }
 
 }
