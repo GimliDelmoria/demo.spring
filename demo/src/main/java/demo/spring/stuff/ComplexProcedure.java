@@ -1,6 +1,7 @@
 package demo.spring.stuff;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.stream.IntStream;
@@ -8,13 +9,16 @@ import java.util.stream.IntStream;
 @Component
 public class ComplexProcedure implements IComplexProcedure {
 
-    // Fonctionne y compris sur les private members, à ne pas privilégier (moins simple après pour les tests)
-    @Autowired
     private ICalculator calculator = null;
-    @Autowired
     private IAggregator aggregator = null;
-
     private Limiter limiter = null;
+
+    // problème à la création car deux beans candidats
+    // on n'avait pas d'erreur avec autowired niveau fields
+    public ComplexProcedure(@Qualifier("supremeCalculator") ICalculator calculator, IAggregator aggregator) {
+        this.calculator = calculator;
+        this.aggregator = aggregator;
+    }
 
     @Override
     public double work(IntStream i1, IntStream i2) {
