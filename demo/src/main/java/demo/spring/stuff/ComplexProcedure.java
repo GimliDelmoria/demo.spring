@@ -26,12 +26,13 @@ public class ComplexProcedure implements IComplexProcedure {
     // @Value s'utilise aussi au niveau d'un paramètre de constructeur
     // @Value("#{environment['magic.number']}") // Le signe # est utilisé pour une expression spring SpEL
     // @Value("#{new Integer(environment['magic.number']) * 2}") // UneSpEL permet de réaliser des traitements plus complexe. (16)
-    @Value("#{magicNumberProvider.generateMagicNumber()}") // Appel de méthode
+    @Value("#{magicNumberProvider.generateMagicNumber()}") // Appel de méthode, préciser que SpEL utilisé dans Spring assez largement (security, batch)
     private Double magicNumber = null;
 
     // exemple hors contexte mais bon c'est juste pour l'exemple
     // @Value("${os.name}") // system property, initialisée après la création de l'instance
-    @Value("#{systemProperties['os.name']}")
+    // @Value("#{systemProperties['os.nom']?:'unknown'}")
+    @Value("${os.nom:unknown}")
     private String osName;
 
     /**
