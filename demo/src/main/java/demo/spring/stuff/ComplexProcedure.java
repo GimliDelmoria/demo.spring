@@ -24,7 +24,9 @@ public class ComplexProcedure implements IComplexProcedure {
     private Limiter limiter = null;
 
     // @Value s'utilise aussi au niveau d'un paramètre de constructeur
-    @Value("#{environment['magic.number']}") // Le signe # est utilisé pour une expression spring SpEL
+    // @Value("#{environment['magic.number']}") // Le signe # est utilisé pour une expression spring SpEL
+    // @Value("#{new Integer(environment['magic.number']) * 2}") // UneSpEL permet de réaliser des traitements plus complexe. (16)
+    @Value("#{magicNumberProvider.generateMagicNumber()}") // Appel de méthode
     private Double magicNumber = null;
 
     // exemple hors contexte mais bon c'est juste pour l'exemple
