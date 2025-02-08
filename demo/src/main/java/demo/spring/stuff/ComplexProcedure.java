@@ -8,11 +8,11 @@ import org.springframework.stereotype.Component;
 import java.util.stream.IntStream;
 
 @Component
-@Profile("demo")
+@Profile("!demo")
 @Lazy
 /**
- * On place ce bean dans un profile. L'utilisation profile pourrait tout aussi bien
- * être associée à une classe de @Configuration, ou au niveau d'un bean
+ * Un profile peut aussi être défini implicitement via une condition. Ici, le bean est présent si on ne se trouve
+ * pas dans le profile demo.
  */
 public class ComplexProcedure implements IComplexProcedure {
 
