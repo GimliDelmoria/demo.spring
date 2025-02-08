@@ -3,6 +3,7 @@ package demo.spring.stuff;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Profile;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -21,6 +22,16 @@ public class ComplexProcedure implements IComplexProcedure {
     @Autowired
     private IAggregator aggregator = null;
     private Limiter limiter = null;
+
+    /**
+     * Spring met à disposition les données de configuration via le bean Environment.
+     * Il donne accès aux variables d'environnements et aux variables système qu'il considère comme des
+     * sources de données. Poser un point d'arrêt ligne 33 permet de voir tout ça.
+     * @param environment
+     */
+    public ComplexProcedure(Environment environment) {
+        System.out.println(environment.getProperty("os.name")); // -> Linux
+    }
 
     @Override
     public double work(IntStream i1, IntStream i2) {
