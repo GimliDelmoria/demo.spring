@@ -23,11 +23,13 @@ public class ComplexProcedure implements IComplexProcedure {
     private IAggregator aggregator = null;
     private Limiter limiter = null;
 
-    @Value("${magic.number}") // Le signe $ est nécessaire.
+    // @Value s'utilise aussi au niveau d'un paramètre de constructeur
+    @Value("#{environment['magic.number']}") // Le signe # est utilisé pour une expression spring SpEL
     private Double magicNumber = null;
 
     // exemple hors contexte mais bon c'est juste pour l'exemple
-    @Value("${os.name}") // system property, initialisée après la création de l'instance
+    // @Value("${os.name}") // system property, initialisée après la création de l'instance
+    @Value("#{systemProperties['os.name']}")
     private String osName;
 
     /**
