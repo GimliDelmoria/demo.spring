@@ -1,9 +1,9 @@
 package demo.spring.stuff;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Profile;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -23,17 +23,22 @@ public class ComplexProcedure implements IComplexProcedure {
     private IAggregator aggregator = null;
     private Limiter limiter = null;
 
-    // On ne souhaite pas hardcoder cette valeur
+    @Value("${magic.number}") // Le signe $ est nécessaire.
     private Double magicNumber = null;
+
+    // exemple hors contexte mais bon c'est juste pour l'exemple
+    @Value("${os.name}") // system property, initialisée après la création de l'instance
+    private String osName;
 
     /**
      * Spring met à disposition les données de configuration via le bean Environment.
      * Il donne accès aux variables d'environnements et aux variables systèmes qu'il considère comme des
      * sources de données. Equivalent à faire des System.getenv et getProperty Poser un point d'arrêt ligne 33 permet de voir tout ça.
-     * @param environment
      */
-    public ComplexProcedure(Environment environment) {
-        magicNumber = environment.getProperty("magic.number", Double.class);
+    public ComplexProcedure(/* Environment environment */) {
+        // magicNumber = environment.getProperty("magic.number", Double.class); plus nécessaire
+        // osName null à ce stade
+        // prendra plus tard ma valeur "Linux"
     }
 
     @Override
