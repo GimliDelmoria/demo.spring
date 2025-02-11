@@ -3,6 +3,7 @@ package demo.spring.stuff;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import java.math.BigInteger;
 import java.util.stream.IntStream;
 
 public class Main {
@@ -33,8 +34,13 @@ public class Main {
         double d = p.work(i1, i2);
         System.out.println(d);
 
+        BigInteger bigInteger = context.getBean("magicBean", BigInteger.class);
+        System.out.println(bigInteger); // debugger pour comprendre pourquoi bigInteger reste toujours à 1 (immutable)
+
         // Va permettre d'appeler la méthode predestroy
         // le vérifier dans la console
         context.close();
+
+        System.out.println(bigInteger);
     }
 }
