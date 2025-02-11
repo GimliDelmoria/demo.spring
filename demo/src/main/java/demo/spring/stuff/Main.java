@@ -1,6 +1,6 @@
 package demo.spring.stuff;
 
-import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.stream.IntStream;
@@ -16,7 +16,8 @@ public class Main {
         // On peut aussi activer des profiles via la variable système -Dspring.profiles.active
         // On utilise aussi l'annotation @ActiveProfiles mais pour les tests uniquement
 
-        ApplicationContext context = new AnnotationConfigApplicationContext(MyConfiguration.class);
+        // On passe en configurable pour pouvoir accéder à la méthode close
+        ConfigurableApplicationContext context = new AnnotationConfigApplicationContext(MyConfiguration.class);
 
         DateToken dt = context.getBean(DateToken.class);
         System.out.println(dt.getTime());
@@ -31,5 +32,9 @@ public class Main {
         IComplexProcedure p = context.getBean(IComplexProcedure.class);
         double d = p.work(i1, i2);
         System.out.println(d);
+
+        // Va permettre d'appeler la méthode predestroy
+        // le vérifier dans la console
+        context.close();
     }
 }
