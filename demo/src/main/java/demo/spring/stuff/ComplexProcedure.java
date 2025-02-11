@@ -1,5 +1,7 @@
 package demo.spring.stuff;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
@@ -43,6 +45,17 @@ public class ComplexProcedure implements IComplexProcedure {
         // magicNumber = environment.getProperty("magic.number", Double.class); plus nécessaire
         // osName null à ce stade
         // prendra plus tard ma valeur "Linux"
+    }
+
+    @PostConstruct
+    private void doSomethingOnceDependenciesAreInjected() {
+        System.out.println("been injected");
+    }
+
+    // Lancer le main est vérifier qu'on n'a pas le message ci-dessous
+    @PreDestroy
+    private void doSomethingOnceTerminated() {
+        System.out.println("being terminated");
     }
 
     @Override
